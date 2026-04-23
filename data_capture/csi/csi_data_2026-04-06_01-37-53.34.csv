@@ -1,0 +1,2 @@
+CSI_DATA,PA,MAC,RSSI,Rate,Sig_Mode,MCS,Bandwidth,Smoothing,Not_Sounding,Aggregation,STBC,FEC_Coding,SGI,Noise_Floor,AMPDU_CNT,Channel,Secondary_Channel,Local_Timestamp,Ant,Sig_Len,RX_State,Real_Time_Set,Real_Timestamp,Len,CSI_Data,Timestamp
+type,role,mac,rssi,rate,sig_mode,mcs,bandwidth,smoothing,not_sounding,aggregation,stbc,fec_coding,sgi,noise_floor,ampdu_cnt,channel,secondary_channel,local_timestamp,ant,sig_len,rx_state,real_time_set,real_timestamp,len,CSI_DATA,2026-04-06_01-37-53-930
