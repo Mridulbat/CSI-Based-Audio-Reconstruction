@@ -19,23 +19,27 @@ by comparing the waveforms using techniques like Cosine Similarity.
 
 An ESP32 captures CSI at 100 Hz over a standard WiFi link and sends it over USB serial at a baud rate of 921600 . A microphone records in parallel. Both streams are timestamped and aligned.
 
+<table align="center">
+<tr>
 <td align="center">
-<img src="data_capture\Waveform Images\clap.png" width="400"><br>
+<img src="data_capture/Waveform%20Images/clap.png" width="400"><br>
 Audio Waveform
 </td>
+
 <td align="center">
-<img src="data_capture\csi_plot\sample_plot.png" width="400"><br>
+<img src="data_capture/csi_plot/sample_plot.png" width="400"><br>
 Sample CSI Plot
 </td>
 </tr>
 
 <tr>
 <td align="center">
-<img src="data_capture\Continuous waveforms\amplitude csi.png" width="400"><br>
+<img src="data_capture/Continuous%20waveforms/amplitude%20csi.png" width="400"><br>
 CSI Amplitude Heatmap
 </td>
+
 <td align="center">
-<img src="data_capture\Continuous waveforms\cir audio to wf.png" width="400"><br>
+<img src="data_capture/Continuous%20waveforms/cir%20audio%20to%20wf.png" width="400"><br>
 CIR Audio Waveform
 </td>
 </tr>
