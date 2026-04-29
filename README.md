@@ -44,7 +44,7 @@ cd data_capture
 python record_both.py
 ```
 
-Captures CSI from `/dev/ttyUSB0` at 1 Mbaud and audio from the default microphone simultaneously for 10 seconds, saving timestamped CSV and WAV files.
+Captures CSI from `/dev/ttyUSB0`  and audio from the default microphone simultaneously for 10 seconds.
 
 ```
 
@@ -52,13 +52,11 @@ Captures CSI from `/dev/ttyUSB0` at 1 Mbaud and audio from the default microphon
 
 | Component | Details |
 |-----------|---------|
-| ESP32 DevKit | CSI capture via USB serial at 1 Mbaud |
+| ESP32 | CSI capture via USB serial  |
 | Router | Standard 2.4 GHz WiFi AP |
-| Microphone | Any USB or 3.5 mm mic supported by PyAudio |
-| Host PC / Raspberry Pi | Runs `record_both.py` |
+| Microphone | Any mic supported by pyaudio |
+| Host PC | Runs `record_both.py` |
 
 
 
-## References
 
-See the [References](https://github.com/Cryio/Wifi-CSI-Based-Activity-Recognition/wiki/References) wiki page for the full list of academic papers and tools this project builds on.
