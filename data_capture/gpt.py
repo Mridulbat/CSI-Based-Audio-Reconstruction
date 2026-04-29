@@ -4,7 +4,7 @@ import time
 
 PORT = "COM3"
 BAUD = 115200
-DURATION = 30  # seconds
+DURATION = 30  
 
 ser = serial.Serial(PORT, BAUD, timeout=1)
 

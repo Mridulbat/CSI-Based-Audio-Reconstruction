@@ -6,10 +6,10 @@ import threading
 import pyaudio
 import wave
 
-# ================= CONFIG =================
 
-SERIAL_PORT = "COM3"
-BAUD_RATE = 115200  # 🔴 keep this for now
+
+SERIAL_PORT = "/dev/ttyUSB0" 
+BAUD_RATE = 921600
 
 CSI_DURATION = 10
 AUDIO_DURATION = 10
@@ -18,7 +18,7 @@ TOTAL_DURATION = 10
 CSI_DIR = "csi"
 AUDIO_DIR = "audio"
 
-# ==========================================
+
 
 os.makedirs(CSI_DIR, exist_ok=True)
 os.makedirs(AUDIO_DIR, exist_ok=True)
@@ -26,7 +26,7 @@ os.makedirs(AUDIO_DIR, exist_ok=True)
 def generate_timestamp():
     return time.strftime('%Y-%m-%d_%H-%M-%S', time.localtime())
 
-# ================= CSI ====================
+
 
 class CSICapture:
     def __init__(self, port, baud, duration, stop_event, timestamp):
@@ -67,9 +67,9 @@ class CSICapture:
 
             finally:
                 self.ser.close()
-                print("✅ CSI saved:", self.filepath)
+                print("CSI saved:", self.filepath)
 
-# ================= AUDIO ====================
+
 
 class AudioCapture:
     def __init__(self, duration, stop_event, timestamp):
@@ -114,9 +114,9 @@ class AudioCapture:
         wf.writeframes(b"".join(frames))
         wf.close()
 
-        print("✅ Audio saved:", self.filepath)
+        print("Audio saved:", self.filepath)
 
-# ================= MAIN ====================
+
 
 def run():
     stop_event = threading.Event()
@@ -135,9 +135,9 @@ def run():
 
     csi_thread.join()
 
-    print("✅ Done")
+    print(" Done")
 
-# ==========================================
+
 
 if __name__ == "__main__":
     run()
