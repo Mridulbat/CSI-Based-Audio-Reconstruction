@@ -1,6 +1,23 @@
 # WiFi-CSI-Based Activity Recognition
 
-Non-intrusive human activity recognition using WiFi Channel State Information (CSI), synchronized audio, and deep learning — no cameras, no wearables.
+This project explores the capabilities of WiFi based device-free sensing by leveraging Channel State
+Information (CSI) and Channel Impulse Response (CIR) to detect environmental patterns. The work
+begins with a focus on research into CSI data collection methodologies and software frameworks,
+followed by a hardware implementation using the ESP32 platform While exploring possible
+Hardware and software for WiFi 6/7 Standards.
+The technical core of the work involves a multi-stage data processing pipeline. Raw CSI data is
+captured by reading data from the serial port and then converted into Amplitude and Phase for each
+sub carrier allowing us to get a better picture of our data. The CSI signal is converted into CIR
+using IFFT to get an idea about the data in the time domain. This process allowed for a direct
+magnitude and pattern comparison between signal-derived "audio" and actual acoustic recordings.
+The later part of the work focused on mapping specific physical activities and environmental
+disturbances to signal fluctuations. This included collecting data under controlled noise conditions,
+such as background clapping, to test the system’s sensitivity. By comparing the waveforms of actual
+audio against those generated from CSI/CIR data, and then attempting to find conclusive patterns
+by comparing the waveforms using techniques like Cosine Similarity.
+
+
+An ESP32 captures CSI at 100 Hz over a standard WiFi link and sends it over USB serial at a baud rate of 921600 . A microphone records in parallel. Both streams are timestamped and aligned.
 
 <div align="center">
   <img src="data_capture/csi_plot/csi_data_2024-09-25_22-01-04.590_amp_all_subcarriers.png?raw=true" width="45%" alt="CSI amplitude — all subcarriers">
@@ -12,55 +29,9 @@ Non-intrusive human activity recognition using WiFi Channel State Information (C
 </div>
 <div align="center"><em>Top row: CSI amplitude time-series (left) and amplitude/phase heatmap (right). Bottom row: Synchronized audio mel-spectrogram (left) and audio time-series (right).</em></div>
 
-## Publication
 
-> **Rai, M. et al.** — *BeatWave: WiFi CSI-Based Human Activity Recognition with Multi-Modal Audio Correlation* (COMSNETS 2026)
-> [Download PDF](https://github.com/Cryio/Wifi-CSI-Based-Activity-Recognition/raw/main/m2633-rai%20final.pdf)
 
-## Overview
 
-Traditional activity recognition using cameras raises privacy concerns for continuous indoor monitoring. This project replaces cameras with **WiFi CSI** — the amplitude and phase information already present in every WiFi packet — combined with a synchronized microphone to classify human activities.
-
-An ESP32 captures CSI at 100 Hz over a standard WiFi link and sends it over USB serial at 1 Mbaud. A microphone records in parallel. Both streams are timestamped and aligned, then processed through a pipeline that produces CSI heatmaps and audio mel-spectrograms. Three deep learning models have been developed against this data:
-
-| Model | File | Framework | Purpose |
-|-------|------|-----------|---------|
-| CSI→Audio Transformer | `data_capture/model.py` | PyTorch | Translates CSI time-series into audio waveforms |
-| WGAN-GP | `data_capture/train_gan.py` | PyTorch | CSI-conditioned audio generation / augmentation |
-| Multi-input CNN | `data_capture/CNN_model.py` | TensorFlow/Keras | Activity classification from CSI + audio images |
-
-## Repository Structure
-
-```
-data_capture/
-├── record_both.py             # Synchronized CSI + audio capture
-├── csi_to_matrix.py           # Raw CSV → amplitude/phase matrix CSVs
-├── wav_to_matrix.py           # WAV → audio matrix CSV
-├── high_filter.py             # Bandpass filter on CSI amplitude
-├── select_top_subcarriers.py  # Select top-8 most-variant subcarriers
-├── model.py                   # CSI→Audio Transformer (PyTorch)
-├── train_gan.py               # WGAN-GP trainer (PyTorch)
-├── CNN_model.py               # Multi-input CNN (TensorFlow/Keras)
-├── inference.py               # Run inference with trained models
-├── csi/                       # Raw CSI CSV files
-├── audio/                     # Raw audio WAV files
-├── csi_amplitude/             # Per-subcarrier amplitude matrices
-├── csi_phase/                 # Per-subcarrier phase matrices
-├── csi_combined/              # Amplitude + phase combined
-├── audio_matrix/              # Audio matrices
-├── csi_plot/                  # CSI heatmap images
-└── audio_plot/                # Mel-spectrogram images
-```
-
-## Quick Start
-
-### Requirements
-
-```bash
-pip install -r data_capture/requirements.txt
-```
-
-Python packages required: `pyserial`, `pyaudio`, `numpy`, `scipy`, `librosa`, `matplotlib`, `torch`, `tensorflow`, `scikit-learn`, `soundfile`.
 
 ### 1. Flash ESP32 Firmware
 
@@ -75,13 +46,6 @@ python record_both.py
 
 Captures CSI from `/dev/ttyUSB0` at 1 Mbaud and audio from the default microphone simultaneously for 10 seconds, saving timestamped CSV and WAV files.
 
-### 3. Process Data
-
-```bash
-python csi_to_matrix.py           # Raw CSI → amplitude + phase matrices
-python wav_to_matrix.py           # WAV → audio matrix
-python high_filter.py             # Bandpass filter CSI amplitude
-python select_top_subcarriers.py  # Keep top-8 subcarriers by variance
 ```
 
 ## Hardware
@@ -93,9 +57,7 @@ python select_top_subcarriers.py  # Keep top-8 subcarriers by variance
 | Microphone | Any USB or 3.5 mm mic supported by PyAudio |
 | Host PC / Raspberry Pi | Runs `record_both.py` |
 
-## Wiki
 
-Full documentation — hardware setup, firmware flashing, data processing pipeline, model architecture, training, inference, and troubleshooting — is in the [project wiki](https://github.com/Cryio/Wifi-CSI-Based-Activity-Recognition/wiki).
 
 ## References
 
