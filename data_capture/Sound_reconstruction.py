@@ -28,7 +28,7 @@ signal_1d = np.std(csi_data, axis=1)
 nyq = CSI_FS / 2
 
 if CSI_FS < 30:
-    print("⚠ Low sampling rate → using low-pass filter")
+    print(" Low sampling rate → using low-pass filter")
     cutoff = nyq * 0.8
     b, a = signal.butter(2, cutoff / nyq, btype='low')
 else:
