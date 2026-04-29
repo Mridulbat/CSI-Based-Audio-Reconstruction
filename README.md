@@ -28,6 +28,27 @@ An ESP32 captures CSI at 100 Hz over a standard WiFi link and sends it over USB 
   <img src="data_capture\Continuous waveforms\cir audio to wf.png" width="45%">
 </div>
 <div align="center"><em>Top row: audio waveform (left) and sample csi plot (right). Bottom row: CSI amplitude heatmap (left) cir audio waveform (right).</em></div>
+<td align="center">
+<img src="data_capture\Waveform Images\clap.png" width="400"><br>
+Audio Waveform
+</td>
+<td align="center">
+<img src="data_capture\csi_plot\sample_plot.png" width="400"><br>
+Sample CSI Plot
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<img src="data_capture\Continuous waveforms\amplitude csi.png" width="400"><br>
+CSI Amplitude Heatmap
+</td>
+<td align="center">
+<img src="data_capture\Continuous waveforms\cir audio to wf.png" width="400"><br>
+CIR Audio Waveform
+</td>
+</tr>
+</table>
 
 
 
