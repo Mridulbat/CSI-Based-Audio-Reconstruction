@@ -20,14 +20,14 @@ by comparing the waveforms using techniques like Cosine Similarity.
 An ESP32 captures CSI at 100 Hz over a standard WiFi link and sends it over USB serial at a baud rate of 921600 . A microphone records in parallel. Both streams are timestamped and aligned.
 
 <div align="center">
-  <img src="data_capture/csi_plot/csi_data_2024-09-25_22-01-04.590_amp_all_subcarriers.png?raw=true" width="45%" alt="CSI amplitude — all subcarriers">
-  <img src="data_capture/csi_plot/csi_data_2024-09-25_16-27-42.805_heatmap.png?raw=true" width="45%" alt="CSI amplitude + phase heatmap">
+  <img src="C:\Users\Lenovo\Desktop\Proj\data_capture\Waveform Images\clap.png">
+  <img src="C:\Users\Lenovo\Desktop\Proj\data_capture\csi_plot\sample_plot.png">
 </div>
 <div align="center">
-  <img src="data_capture/audio_plot/2024-09-25_22-01-04.590_spectrogram.png?raw=true" width="45%" alt="Mel-spectrogram of synchronized audio">
-  <img src="data_capture/audio_plot/2024-09-25_22-01-04.590_time_series.png?raw=true" width="45%" alt="Audio time-series">
+  <img src="C:\Users\Lenovo\Desktop\Proj\data_capture\Continuous waveforms\amplitude csi.png">
+  <img src="C:\Users\Lenovo\Desktop\Proj\data_capture\Continuous waveforms\cir audio to wf.png" width="45%" alt="Audio time-series">
 </div>
-<div align="center"><em>Top row: CSI amplitude time-series (left) and amplitude/phase heatmap (right). Bottom row: Synchronized audio mel-spectrogram (left) and audio time-series (right).</em></div>
+<div align="center"><em>Top row: audio waveform (left) and sample csi plot (right). Bottom row: CSI amplitude heatmap (left) cir audio waveform (right).</em></div>
 
 
 
