@@ -27,7 +27,7 @@ with open(filename, "w", newline="") as f:
             continue
 
         if "CSI_DATA" in decoded:
-            print("✔", decoded[:60])  # debug
+            print( decoded[:60])  # debug
             writer.writerow([decoded])
 
 print(f"\nSaved to {filename}")
